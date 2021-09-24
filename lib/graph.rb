@@ -16,9 +16,14 @@ class Graph
     flat_board.each_with_index do |square, index|
       # puts "#{index} --> #{square.position}"
       knight_moves.each do |move|
-        square.adjacent << move if move_allowed?(move, square.position)
+        position = square.position
+        square.adjacent << move_square(move, position) if move_allowed?(move, position)
       end
     end
+  end
+
+  def move_square(move, position)
+    [move.first + position.first, move.last + position.last]
   end
 
   def move_allowed?(move, position)
@@ -33,9 +38,8 @@ class Graph
     position.last + move.last >= 0 && position.last + move.last <= 7
   end
 
-
   def knight_moves
-    [[-1, 2], [-2, -1], [-2, 1], [-1, 2], [1, 2], [2, 1], [2, -1], [1, -2]]
+    [[1, -2], [2, -1], [2, 1], [1, 2], [-1, 2], [-2, 1], [-2, -1], [-1, -2]]
   end
 
   def min_square
@@ -49,4 +53,4 @@ end
 
 graph = Graph.new
 graph.build_graph
-puts "#{graph.board[0][0].position} --> #{graph.board[0][0].adjacent}"
+puts "#{graph.board[5][2].position} --> #{graph.board[5][2].adjacent}"
