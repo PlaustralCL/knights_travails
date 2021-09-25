@@ -17,9 +17,16 @@ class Graph
       # puts "#{index} --> #{square.position}"
       knight_moves.each do |move|
         position = square.position
-        square.adjacent << move_square(move, position) if move_allowed?(move, position)
+        if move_allowed?(move, position)
+          target_square = move_square(move, position)
+          square.adjacent << grid_to_object(target_square)
+        end
       end
     end
+  end
+
+  def grid_to_object(grid_coord)
+    board[grid_coord.first][grid_coord.last]
   end
 
   def move_square(move, position)
@@ -49,8 +56,32 @@ class Graph
   def max_square
     7
   end
+
+  def adjacent_list
+    board.flatten.each_with_object({}) do |square, hash|
+      list = []
+      square.adjacent.each { |element| list << element.name }
+      hash[square.name] = list
+    end
+  end
 end
 
-graph = Graph.new
-graph.build_graph
-puts "#{graph.board[5][2].position} --> #{graph.board[5][2].adjacent}"
+if __FILE__ == $PROGRAM_NAME
+  graph = Graph.new
+  graph.build_graph
+  # puts "#{graph.board[5][2].name} --> #{graph.board[5][2].adjacent}"
+  # graph.board[0][0].adjacent.each do |square|
+  #   puts square.name
+  #   puts square.adjacent.first.name
+  # end
+
+  # graph.board.flatten.each do |square|
+  #   list = []
+  #   square.adjacent.each do |element|
+  #     list << element.name
+  #   end
+  #   puts "#{square.name} --> #{list}"
+  # end
+
+  graph.adjacent_list.each { |key, value| puts "#{key} --> #{value}" }
+end
