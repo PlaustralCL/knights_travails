@@ -17,9 +17,10 @@ class Board
     row_name = ("1".."8").to_a.reverse
     board.each_index do |col|
       board.each_index do |row|
-        board[row][col].name = col_names[col] + row_name[row]
-        board[row][col].position = [row, col]
-
+        square = board[row][col]
+        square.name = col_names[col] + row_name[row]
+        square.position = [row, col]
+        square.path << square.name
       end
     end
   end
