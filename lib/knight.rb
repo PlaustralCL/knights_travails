@@ -16,10 +16,14 @@ class Knight
 
   def initialize
     @gameboard = Board.new
+    setup
+    @unvisited = create_unvisited
+  end
+
+  def setup
     Graph.new(gameboard)
     select_start_square
     select_target_square
-    @unvisited = create_unvisited
   end
 
   def select_start_square
