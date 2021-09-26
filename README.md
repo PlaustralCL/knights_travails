@@ -9,6 +9,8 @@ graph had to consider the bounds of the chess board.
 
 The shortest path was calculated using Dijkstra's algoritm.
 
+A live version is on [Replit.com](https://replit.com/@PlaustralCL/knightstravails#main.rb)
+
 ## Reflections
 * First time building a graph
 * Translating a description of an algorithm into code
