@@ -10,12 +10,12 @@ class Graph
 
   def initialize(board = Board.new)
     @board = board.board
+    build_graph
   end
 
   def build_graph
     flat_board = board.flatten
     flat_board.each_with_index do |square, index|
-      # puts "#{index} --> #{square.position}"
       knight_moves.each do |move|
         position = square.position
         if move_allowed?(move, position)
@@ -70,19 +70,5 @@ end
 if __FILE__ == $PROGRAM_NAME
   graph = Graph.new
   graph.build_graph
-  # puts "#{graph.board[5][2].name} --> #{graph.board[5][2].adjacent}"
-  # graph.board[0][0].adjacent.each do |square|
-  #   puts square.name
-  #   puts square.adjacent.first.name
-  # end
-
-  # graph.board.flatten.each do |square|
-  #   list = []
-  #   square.adjacent.each do |element|
-  #     list << element.name
-  #   end
-  #   puts "#{square.name} --> #{list}"
-  # end
-
   graph.adjacent_list.each { |key, value| puts "#{key} --> #{value}" }
 end

@@ -16,7 +16,7 @@ class Knight
 
   def initialize
     @gameboard = Board.new
-    Graph.new(gameboard).build_graph
+    Graph.new(gameboard)
     select_start_square
     select_target_square
     @unvisited = create_unvisited
@@ -77,7 +77,7 @@ class Knight
 
   def show_result
     puts "You made it from #{start.name} to #{target.name} in #{target.path.size - 1} moves!"
-    puts "Here is the path: #{target.path.join( ' --> ')}"
+    puts "Here is the path: #{target.path.join(' --> ')}"
   end
 end
 
