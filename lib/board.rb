@@ -4,7 +4,7 @@ require_relative "square"
 
 # Create a representation of a chess board
 class Board
-  attr_accessor :board
+  attr_reader :board
 
   def initialize
     @board = Array.new(8) { Array.new(8) { Square.new } }
@@ -13,9 +13,13 @@ class Board
 
   def asign_square_names
     board.each_index do |col|
-      board.each_index do |row|
-        assign_properties(col, row)
-      end
+      iterate_row(col)
+    end
+  end
+
+  def iterate_row(col)
+    board.each_index do |row|
+      assign_properties(col, row)
     end
   end
 
@@ -45,12 +49,18 @@ class Board
   def show_board
     display_board = Array.new(8) { Array.new(8) }
     (0..7).each do |row|
-      (0..7).each do |col|
-        display_board[row][col] = board[row][col].position
-      end
       p display_board[row]
     end
   end
+
+  def iterate_display_col(row)
+    (0..7).each do |col|
+      display_board[row][col] = board[row][col].position
+    end
+  end
+
+
+
 end
 
 if __FILE__ == $PROGRAM_NAME
