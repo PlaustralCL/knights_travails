@@ -47,7 +47,7 @@ class Knight
         working_node = queue.first
         if current_node.distance + 1 < working_node.distance
           working_node.distance = current_node.distance + 1
-          working_node.path << current_node.path.flatten
+          working_node.path = current_node.path + [working_node.name]
         end
         queue.shift
       end
@@ -82,4 +82,4 @@ p knight.start.name
 p knight.target.name
 knight.shortest_path
 p knight.target.distance
-p knight.target.path.flatten.reverse
+p knight.target.path.flatten
