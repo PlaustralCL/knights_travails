@@ -2,7 +2,7 @@
 
 require "pry"
 require "set"
-require_relative "chess_helper"
+require_relative "chess_notation"
 require_relative "board"
 require_relative "graph"
 require_relative "square"
