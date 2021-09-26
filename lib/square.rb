@@ -5,9 +5,9 @@
 class Square
   attr_accessor :name, :position, :adjacent, :visited, :distance, :path
 
-  def initialize(name = "z0")
-    @name = name
-    @position = [-1, -1]
+  def initialize
+    @name = ""
+    @position = []
     @adjacent = []
     @visited = false
     @distance = Float::INFINITY
