@@ -69,15 +69,17 @@ class Knight
       @unvisted = unvisited.delete(current_node)
       current_node = find_next_node
     end
-
-
-
   end
 
   def find_next_node
     unvisited.to_a.reduce do |memo, square|
       memo.distance < square.distance ? memo : square
     end
+  end
+
+  def show_result
+    puts "You made it from #{start.name} to #{target.name} in #{target.path.size - 1} moves!"
+    puts "Here is the path: #{target.path.join( ' --> ')}"
   end
 
 
@@ -92,8 +94,9 @@ end
 # end
 
 knight = Knight.new
-p knight.start.name
-p knight.target.name
+# p knight.start.name
+# p knight.target.name
 knight.shortest_path
-p knight.target.distance
-p knight.target.path.flatten
+# p knight.target.distance
+# p knight.target.path.flatten
+knight.show_result
