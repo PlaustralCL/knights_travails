@@ -15,12 +15,26 @@ class Knight
   attr_accessor :start, :target, :unvisited
   attr_reader :gameboard
 
-  def initialize(start = [0, 0], target = [3, 3])
+  def initialize
     @gameboard = Board.new
     Graph.new(gameboard).build_graph
-    @start = board[start.first][start.last]
-    @target = board[target.first][target.last]
+    select_start_square
+    select_target_square
+    # @start = board[start.first][start.last]
+    # @target = board[target.first][target.last]
     @unvisited = create_unvisited
+  end
+
+  def select_start_square
+    puts "Start square:"
+    start_grid = name_to_grid(choose_square)
+    @start = board[start_grid.first][start_grid.last]
+  end
+
+  def select_target_square
+    puts "Target square:"
+    target_grid = name_to_grid(choose_square)
+    @target = board[target_grid.first][target_grid.last]
   end
 
   def create_unvisited

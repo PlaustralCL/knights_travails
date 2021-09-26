@@ -20,7 +20,7 @@ module ChessNotation
     square
   end
 
-  def split_square
+  def split_square(square)
     square.match(/^([a-h])([1-8])$/).captures
   end
 
@@ -32,8 +32,8 @@ module ChessNotation
     rank.tr("1-8", "76543210").to_i
   end
 
-  def to_grid
-    file, rank = split_square
+  def name_to_grid(name)
+    file, rank = split_square(name)
     [rank_to_grid(rank), file_to_grid(file)]
   end
 end
