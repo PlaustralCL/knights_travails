@@ -15,7 +15,7 @@ class Graph
 
   def build_graph
     flat_board = board.flatten
-    flat_board.each_with_index do |square, index|
+    flat_board.each do |square|
       knight_moves.each do |move|
         position = square.position
         if move_allowed?(move, position)
@@ -39,11 +39,11 @@ class Graph
   end
 
   def row_allowed?(move, position)
-    position.first + move.first >= 0 && position.first + move.first <= 7
+    position.first + move.first >= min_square && position.first + move.first <= max_square
   end
 
   def col_allowed?(move, position)
-    position.last + move.last >= 0 && position.last + move.last <= 7
+    position.last + move.last >= min_square && position.last + move.last <= max_square
   end
 
   def knight_moves

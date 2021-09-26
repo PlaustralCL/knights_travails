@@ -8,7 +8,7 @@ require_relative "graph"
 require_relative "square"
 
 # Determines a knight's shortet path from the start square to the target
-# square
+# square using Dijkstra's algorithm.
 class Knight
   include ChessNotation
 

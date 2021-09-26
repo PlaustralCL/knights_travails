@@ -37,22 +37,3 @@ module ChessNotation
     [rank_to_grid(rank), file_to_grid(file)]
   end
 end
-
-class Practice
-  include ChessNotation
-  attr_accessor :square
-end
-
-if __FILE__ == $PROGRAM_NAME
-  square = Practice.new
-  square.square = square.choose_square
-  p square.square
-  p square.to_grid
-  # square = choose_square
-  # file, rank = split_square(square)
-  # puts "File: #{file}"
-  # puts "Rank: #{rank}"
-  # puts "File grid: #{file_to_grid(file)}"
-  # puts "Rank grid: #{rank_to_grid(rank)}"
-  # p square.to_grid
-end
