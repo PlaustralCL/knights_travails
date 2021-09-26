@@ -85,6 +85,8 @@ class Knight
   end
 end
 
-knight = Knight.new
-knight.shortest_path
-knight.show_result
+if __FILE__ == $PROGRAM_NAME
+  knight = Knight.new
+  knight.shortest_path
+  knight.show_result
+end
