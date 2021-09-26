@@ -3,7 +3,8 @@
 require_relative "board"
 require_relative "square"
 
-# Create a graph of possible knight moves
+# Create a graph of possible knight moves by connecting each square on the board
+# to the squares a knight could go from there.
 class Graph
   attr_accessor :board
 
