@@ -10,6 +10,7 @@ graph had to consider the bounds of the chess board.
 The shortest path was calculated using Dijkstra's algoritm.
 
 A live version is on [Replit.com](https://replit.com/@PlaustralCL/knightstravails#main.rb)
+
 The code is on [Github](https://github.com/PlaustralCL/knights_travails)
 
 ## Reflections
