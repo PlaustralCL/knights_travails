@@ -12,16 +12,13 @@ require_relative "square"
 class Knight
   include ChessNotation
 
-  attr_accessor :start, :target, :unvisited
-  attr_reader :gameboard
+  attr_reader :gameboard, :start, :target, :unvisited
 
   def initialize
     @gameboard = Board.new
     Graph.new(gameboard).build_graph
     select_start_square
     select_target_square
-    # @start = board[start.first][start.last]
-    # @target = board[target.first][target.last]
     @unvisited = create_unvisited
   end
 
@@ -47,28 +44,29 @@ class Knight
     gameboard.board
   end
 
-  # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
   def shortest_path
     start.distance = 0
     queue = []
 
-    # binding.pry
     current_node = start
     until target.visited
-      # puts "Current node is #{current_node.name}"
       current_node.adjacent.each { |square| queue << square }
-      until queue.empty?
-        working_node = queue.first
-        if current_node.distance + 1 < working_node.distance
-          working_node.distance = current_node.distance + 1
-          working_node.path = current_node.path + [working_node.name]
-        end
-        queue.shift
-      end
+      process_queue(queue, current_node) until queue.empty?
       current_node.visited = true
       @unvisted = unvisited.delete(current_node)
       current_node = find_next_node
     end
+  end
+
+  def process_queue(queue, current_node)
+    working_node = queue.first
+    update_working_node(working_node, current_node) if current_node.distance + 1 < working_node.distance
+    queue.shift
+  end
+
+  def update_working_node(working_node, current_node)
+    working_node.distance = current_node.distance + 1
+    working_node.path = current_node.path + [working_node.name]
   end
 
   def find_next_node
@@ -81,22 +79,8 @@ class Knight
     puts "You made it from #{start.name} to #{target.name} in #{target.path.size - 1} moves!"
     puts "Here is the path: #{target.path.join( ' --> ')}"
   end
-
-
-
 end
 
-# graph = Graph.new
-# knight = Knight.new
-# graph.board[knight.start.first][knight.start.last].distance = 0
-# graph.board.flatten.each do |square|
-#   puts "#{square.name}, distance = #{square.distance}"
-# end
-
 knight = Knight.new
-# p knight.start.name
-# p knight.target.name
 knight.shortest_path
-# p knight.target.distance
-# p knight.target.path.flatten
 knight.show_result
