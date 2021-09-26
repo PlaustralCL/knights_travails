@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "pry"
 require "set"
 require_relative "chess_notation"
 require_relative "board"
