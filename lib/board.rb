@@ -11,20 +11,28 @@ class Board
     asign_square_names
   end
 
-  # rubocop:todo Metrics/AbcSize
   def asign_square_names
-    col_names = ("a".."h").to_a
-    row_name = ("1".."8").to_a.reverse
     board.each_index do |col|
       board.each_index do |row|
-        square = board[row][col]
-        square.name = col_names[col] + row_name[row]
-        square.position = [row, col]
-        square.path << square.name
+        assign_properties(col, row)
       end
     end
   end
-  # robocop:enable Metrics/AbcSize
+
+  def assign_properties(col, row)
+    square = board[row][col]
+    square.name = col_names[col] + row_name[row]
+    square.position = [row, col]
+    square.path << square.name
+  end
+
+  def col_names
+    ("a".."h").to_a
+  end
+
+  def row_name
+    ("1".."8").to_a.reverse
+  end
 
   def each_square(&block)
     return unless block_given?
@@ -43,7 +51,6 @@ class Board
       p display_board[row]
     end
   end
-
 end
 
 if __FILE__ == $PROGRAM_NAME
