@@ -25,6 +25,14 @@ class Board
   end
   # robocop:enable Metrics/AbcSize
 
+  def each_square(&block)
+    return unless block_given?
+
+    board.flatten.each do |square|
+      block.call(square)
+    end
+  end
+
   def show_board
     display_board = Array.new(8) { Array.new(8) }
     (0..7).each do |row|
